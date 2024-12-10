@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Network Packet Sniffer API</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0; /* Light gray background for contrast */
+            background-image: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%); /* Gradient background for visual interest */
+        }
+        /* Container Styles */
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #fff; /* White background for the container */
+            border: 1px solid #ddd; /* Light gray border */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+        }
+        /* Typography Styles */
+        h1 {
+            color: #333; /* Dark gray for the title */
+            margin-bottom: 20px;
+        }
+        p {
+            color: #666; /* Dark gray for the paragraph */
+            margin-bottom: 20px;
+        }
+        /* API Endpoints Styles */
+        .api-endpoints {
+            margin-top: 40px;
+        }
+        .api-endpoint {
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #f9f9f9; /* Light gray background for additional info */
+            border: 1px solid #ccc; /* Light gray border */
+            border-radius: 5px; /* Rounded corners */
+        }
+        .api-endpoint h2 {
+            margin-top: 0;
+        }
+        .api-endpoint p {
+            margin-bottom: 10px;
+        }
+        /* Additional Info Styles */
+        .additional-info {
+            background-color: #f9f9f9; /* Light gray background for additional info */
+            padding: 10px;
+            margin-top: 20px;
+            border-radius: 5px; /* Rounded corners */
+        }
+        .additional-info p {
+            color: #666; /* Dark gray for the paragraph */
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Network Packet Sniffer API</h1>
+        <p>This is the API for the Network Packet Sniffer developed using Python and Flask.</p>
+        <div class="api-endpoints">
+            <div class="api-endpoint">
+                <h2>GET /packets</h2>
+                <p>Retrieve a list of captured network packets.</p>
+            </div>
+            <div class="api-endpoint">
+                <h2>GET /system</h2>
+                <p>Retrieve system performance data, including CPU usage.</p>
+            </div>
+            <div class="api-endpoint">
+                <h2>POST /scan</h2>
+                <p>Perform a port scan on a target IP address.</p>
+            </div>
+        </div>
+        <div class="additional-info">
+            <h2>Developer Information</h2>
+            <p>Developed by <a href="https://anilsinthu.vercel.app" style="text-decoration: none; text-decoration-color: aqua;">Anil Sinthu</a>, this API aims to provide real-time insights into network activity and system performance.</p>
+            <h2>API Response</h2>
+            <p>API responses are in JSON format, providing detailed information about network packets, system performance, and port scan results.</p>
+        </div>
+    </div>
+</body>
+</html>
+

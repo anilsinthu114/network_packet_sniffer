@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Error 404</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0; /* Light gray background for contrast */
+            background-image: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%); /* Gradient background for visual interest */
+        }
+        .error-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #fff; /* White background for the container */
+            border: 1px solid #ddd; /* Light gray border */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+            text-align: center; /* Center text alignment */
+        }
+        h1 {
+            color: #333; /* Dark gray for the title */
+            margin-bottom: 20px;
+            animation: shake 0.5s; /* Animation for the title */
+        }
+        p {
+            color: #666; /* Dark gray for the paragraph */
+            margin-bottom: 20px;
+        }
+        .error-animation {
+            animation: shake 0.5s; /* Animation for the error message */
+        }
+        .additional-info {
+            background-color: #f9f9f9; /* Light gray background for additional info */
+            padding: 10px;
+            margin-top: 20px;
+            border-radius: 5px; /* Rounded corners */
+        }
+        .loader {
+            display: block;
+            margin: 20px auto;
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3; /* Light gray border */
+            border-radius: 50%; /* Rounded circle */
+            border-top: 5px solid #3498db; /* Blue color for the loader */
+            animation: spin 1s linear infinite; /* Animation for the loader */
+        }
+        @keyframes shake {
+            0% { transform: translate(1px, 1px) rotate(0deg); }
+            10% { transform: translate(-1px, -2px) rotate(-1deg); }
+            20% { transform: translate(-3px, 0px) rotate(1deg); }
+            30% { transform: translate(3px, 2px) rotate(0deg); }
+            40% { transform: translate(1px, -1px) rotate(1deg); }
+            50% { transform: translate(-1px, 2px) rotate(-1deg); }
+            60% { transform: translate(-3px, 1px) rotate(0deg); }
+            70% { transform: translate(3px, 1px) rotate(-1deg); }
+            80% { transform: translate(-1px, -1px) rotate(1deg); }
+            90% { transform: translate(1px, 2px) rotate(0deg); }
+            100% { transform: translate(1px, -2px) rotate(-1deg); }
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <h1 class="error-animation">Error 404</h1>
+        <p>Oops! It seems like the page you're looking for doesn't exist.</p>
+        <div class="loader"></div> <!-- Loader animation for visual interest -->
+        <div class="additional-info">
+            <p>Don't worry, it's not the end of the world! You can try the following:</p>
+            <ul>
+                <li>Check the URL for any typos or errors.</li>
+                <li>Try refreshing the page.</li>
+                <li>Visit our <a href="/">home page</a> to find what you're looking for.</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
+

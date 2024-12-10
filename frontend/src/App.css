@@ -1,0 +1,67 @@
+/* General Styling */
+.app-container {
+  font-family: 'Arial', sans-serif;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.header {
+  text-align: center;
+  color: #333;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.section {
+  margin-bottom: 30px;
+}
+
+.last-updated {
+  font-size: 0.9rem;
+  color: #888;
+}
+
+.packet-list,
+.scan-results {
+  list-style-type: none;
+  padding: 0;
+}
+
+.packet-list li,
+.scan-results li {
+  padding: 8px 0;
+  border-bottom: 1px solid #ddd;
+  margin: 5px 0;
+}
+
+.scan-results li {
+  font-weight: bold;
+}
+
+.target-input {
+  padding: 8px;
+  width: 60%;
+  margin-right: 10px;
+  font-size: 1rem;
+}
+
+.scan-btn {
+  padding: 10px 15px;
+  font-size: 1rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.scan-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Chart Styling */
+canvas {
+  max-width: 100%;
+  height: auto;
+}
