@@ -10,30 +10,29 @@ import {
   PointElement,
   Title,
 } from "chart.js";
-import './App.css';
+import "./App.css";
 
 ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement, Title);
 
 function App() {
-  const [packets, setPackets] = useState([]);
+  const [packetsByInterface, setPacketsByInterface] = useState({});
   const [cpuUsage, setCpuUsage] = useState([]);
   const [scanResults, setScanResults] = useState([]);
   const [target, setTarget] = useState("");
-  const [customPorts, setCustomPorts] = useState(""); // Input for custom ports
+  const [customPorts, setCustomPorts] = useState("");
   const [lastUpdated, setLastUpdated] = useState(new Date());
 
-  const predefinedPorts = [80, 443, 3306]; // Common ports like HTTP, HTTPS, MySQL
+  const predefinedPorts = [80, 443, 3306];
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const packetRes = await axios.get("http://localhost:5000/api/packets");
-        const systemRes = await axios.get("http://localhost:5000/api/system");
+        const [packetRes, systemRes] = await Promise.all([
+          axios.get("http://localhost:5000/api/packets"),
+          axios.get("http://localhost:5000/api/system"),
+        ]);
 
-        console.log("Packets data:", packetRes.data); // Log packets data
-        console.log("System data:", systemRes.data); // Log system data
-
-        setPackets(packetRes.data || []);
+        setPacketsByInterface(packetRes.data || {});
         setCpuUsage(systemRes.data["CPU History"] || []);
         setLastUpdated(new Date());
       } catch (error) {
@@ -42,7 +41,7 @@ function App() {
       }
     };
 
-    const interval = setInterval(fetchData, 1000);
+    const interval = setInterval(fetchData, 2000);
     fetchData(); // Initial fetch
     return () => clearInterval(interval);
   }, []);
@@ -55,12 +54,11 @@ function App() {
 
     let ports = [...predefinedPorts];
 
-    // Handle custom ports
     if (customPorts) {
       const customPortsArray = customPorts
         .split(",")
-        .map(port => port.trim())
-        .filter(port => !isNaN(port) && port > 0 && port <= 65535)
+        .map((port) => port.trim())
+        .filter((port) => !isNaN(port) && port > 0 && port <= 65535)
         .map(Number);
       ports = [...ports, ...customPortsArray];
     }
@@ -72,9 +70,6 @@ function App() {
 
     try {
       const res = await axios.post("http://localhost:5000/api/scan", { target, ports });
-
-      console.log("Scan results:", res.data); // Log scan results
-
       setScanResults(res.data || []);
     } catch (error) {
       console.error("Error scanning ports:", error);
@@ -82,7 +77,6 @@ function App() {
     }
   };
 
-  // Function to determine the service of a port
   const getPortService = (port) => {
     const services = {
       80: "HTTP",
@@ -96,24 +90,30 @@ function App() {
     <div className="app-container">
       <h1 className="header">Network Packet Sniffer & Scanner</h1>
 
-      {/* Packet Analysis Section */}
+      {/* Packet Analysis */}
       <section className="section">
         <h2>Packet Analysis</h2>
         <p className="last-updated">Last Updated: {format(lastUpdated, "Pp")}</p>
-        <ul className="packet-list">
-          {packets.length > 0 ? (
-            packets.map((packet, index) => (
-              <li key={index}>
-                {packet["Source"]} → {packet["Destination"]} [{packet["Protocol"]}]
-              </li>
-            ))
-          ) : (
-            <p>No packets detected.</p>
-          )}
-        </ul>
+
+        {Object.keys(packetsByInterface).length > 0 ? (
+          Object.entries(packetsByInterface).map(([iface, packets]) => (
+            <div key={iface} className="interface-section">
+              <h3>Interface: {iface}</h3>
+              <ul className="packet-list">
+                {packets.map((packet, index) => (
+                  <li key={index}>
+                    {packet["Source"]} → {packet["Destination"]} [{packet["Protocol"]}]
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        ) : (
+          <p>No packets detected.</p>
+        )}
       </section>
 
-      {/* CPU Usage Section */}
+      {/* CPU Usage */}
       <section className="section">
         <h2>CPU Usage</h2>
         {cpuUsage.length > 0 ? (
@@ -159,7 +159,7 @@ function App() {
         )}
       </section>
 
-      {/* Port Scanner Section */}
+      {/* Port Scanner */}
       <section className="section">
         <h2>Port Scanner</h2>
         <input
@@ -184,7 +184,6 @@ function App() {
           Scan
         </button>
 
-        {/* Table for Scan Results */}
         {scanResults.length > 0 && (
           <table className="scan-results-table">
             <thead>

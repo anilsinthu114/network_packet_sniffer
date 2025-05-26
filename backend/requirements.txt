@@ -1,0 +1,6 @@
+Flask
+flask-cors
+pyshark
+psutil
+gunicorn
+python-dotenv
