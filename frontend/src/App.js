@@ -28,8 +28,8 @@ function App() {
     const fetchData = async () => {
       try {
         const [packetRes, systemRes] = await Promise.all([
-          axios.get("http://localhost:5000/api/packets"),
-          axios.get("http://localhost:5000/api/system"),
+          axios.get("https://networksniperapi.onrender.com/api/packets"),
+          axios.get("https://networksniperapi.onrender.com/api/system"),
         ]);
 
         setPacketsByInterface(packetRes.data || {});
@@ -69,7 +69,7 @@ function App() {
     }
 
     try {
-      const res = await axios.post("http://localhost:5000/api/scan", { target, ports });
+      const res = await axios.post("https://networksniperapi.onrender.com/api/scan", { target, ports });
       setScanResults(res.data || []);
     } catch (error) {
       console.error("Error scanning ports:", error);
